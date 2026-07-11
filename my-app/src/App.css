@@ -1,38 +1,112 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.auth-shell {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 24px;
+  background: linear-gradient(135deg, #f4f7fb, #dfe9f7);
 }
 
-.App-link {
-  color: #61dafb;
+.auth-card {
+  width: min(420px, 100%);
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 14px 40px rgba(21, 35, 69, 0.15);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.auth-header h1 {
+  margin: 10px 0 8px;
+  font-size: 2rem;
+}
+
+.auth-header p {
+  margin: 0 0 20px;
+  color: #5a6475;
+}
+
+.auth-badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #e7efff;
+  color: #2857c7;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.mode-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.mode-switch button,
+.submit-button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mode-switch button {
+  background: #e9edf5;
+  color: #334155;
+}
+
+.mode-switch button.active,
+.submit-button {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.mode-switch button:hover,
+.submit-button:hover {
+  opacity: 0.92;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 600;
+  color: #122033;
+}
+
+.auth-form input {
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 1rem;
+}
+
+.submit-button {
+  margin-top: 8px;
+}
+
+.auth-status,
+.session-preview {
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.session-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.session-preview code {
+  word-break: break-word;
 }
