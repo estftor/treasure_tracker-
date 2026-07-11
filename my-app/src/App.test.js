@@ -1,8 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders the auth screen with sign in and sign up controls', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  expect(screen.getByRole('heading', { name: /authentication/i })).toBeInTheDocument();
+  expect(screen.getAllByRole('button', { name: /sign in/i }).length).toBeGreaterThan(0);
+  expect(screen.getAllByRole('button', { name: /sign up/i }).length).toBeGreaterThan(0);
 });
