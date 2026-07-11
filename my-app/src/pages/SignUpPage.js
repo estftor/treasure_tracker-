@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUpPage({ onStatus, onSession }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,43 +35,50 @@ export default function SignUpPage({ onStatus, onSession }) {
       onStatus(error.message);
     } finally {
       setIsLoading(false);
+      navigate('/signup-successful'); // Navigate to the sign-up successful page after successful sign-up
     }
   };
 
   return (
-    <section className="auth-page">
-      <div className="auth-header">
-        <h2>Sign up</h2>
-        <p>Create a new account to get started.</p>
+    <div className="auth-shell">
+      <div className="auth-card auth-layout">
+        <section className="auth-page">
+          <div className="auth-header">
+            <h2>Sign up</h2>
+            <p>Create a new account to get started.</p>
+          </div>
+
+          <form className="auth-form" onSubmit={handleSubmit}>
+            <label>
+              Email
+              <input
+                type="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="name@example.com"
+                required
+              />
+            </label>
+
+            <label>
+              Password
+              <input
+                type="password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder="Create a password"
+                required
+              />
+            </label>
+
+            <button type="submit" className="submit-button" disabled={isLoading}>
+              {isLoading ? 'Please wait...' : 'Sign up'}
+            </button>
+
+            <div>Already have an account? <Link to="/signin">Sign in</Link></div>
+          </form>
+        </section>
       </div>
-
-      <form className="auth-form" onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="name@example.com"
-            required
-          />
-        </label>
-
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            placeholder="Create a password"
-            required
-          />
-        </label>
-
-        <button type="submit" className="submit-button" disabled={isLoading}>
-          {isLoading ? 'Please wait...' : 'Sign up'}
-        </button>
-      </form>
-    </section>
+    </div>
   );
 }

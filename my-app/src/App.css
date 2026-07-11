@@ -110,3 +110,216 @@
 .session-preview code {
   word-break: break-word;
 }
+
+.home-page {
+  min-height: 100vh;
+  padding: 48px 7vw 72px;
+  color: #1e2b35;
+  background:
+    radial-gradient(circle at 88% 5%, rgba(239, 190, 87, 0.32), transparent 25rem),
+    linear-gradient(145deg, #f9f4e8, #e7f0ee);
+}
+
+.home-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 1040px;
+  margin: 0 auto 46px;
+}
+
+.home-eyebrow,
+.section-kicker {
+  margin: 0 0 8px;
+  color: #8c5b12;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.home-header h1,
+.home-section h2,
+.wish-card h3,
+.deal-card h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.home-header h1 {
+  margin: 0;
+  color: #143946;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1;
+}
+
+.home-intro {
+  margin: 14px 0 0;
+  color: #52656a;
+  font-size: 1.05rem;
+}
+
+.treasure-button {
+  padding: 12px 18px;
+  border-radius: 999px;
+  color: #fffaf0;
+  background: #143946;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.home-section {
+  max-width: 1040px;
+  margin: 0 auto 38px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: #143946;
+  font-size: 1.75rem;
+}
+
+.section-heading a {
+  color: #175b62;
+  font-weight: 700;
+}
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.wish-card,
+.deal-card {
+  background: rgba(255, 253, 246, 0.85);
+  border: 1px solid rgba(99, 83, 45, 0.16);
+  box-shadow: 0 10px 28px rgba(36, 56, 52, 0.09);
+}
+
+.wish-card {
+  position: relative;
+  min-height: 170px;
+  padding: 24px;
+  border-radius: 18px;
+}
+
+.wish-icon,
+.deal-icon {
+  display: inline-grid;
+  place-items: center;
+  background: #f3e6bd;
+}
+
+.wish-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 24px;
+  border-radius: 14px;
+  font-size: 1.5rem;
+}
+
+.wish-card h3,
+.deal-card h3 {
+  margin: 0;
+  color: #183d48;
+  font-size: 1.12rem;
+}
+
+.wish-card p,
+.deal-card p {
+  margin: 6px 0 0;
+  color: #65757a;
+}
+
+.more-button {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  border: 0;
+  color: #587076;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.deal-count,
+.expires-label {
+  border-radius: 999px;
+  color: #85520e;
+  background: #f9e8bd;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.deal-count {
+  padding: 7px 10px;
+}
+
+.deals-list {
+  display: grid;
+  gap: 12px;
+}
+
+.deal-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 16px;
+}
+
+.deal-icon {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+}
+
+.deal-copy {
+  flex: 1;
+}
+
+.expires-label {
+  padding: 7px 10px;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .home-page {
+    padding: 32px 20px 48px;
+  }
+
+  .home-header {
+    align-items: start;
+    flex-direction: column;
+    margin-bottom: 36px;
+  }
+
+  .wishlist-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wish-card {
+    min-height: auto;
+  }
+
+  .deal-card {
+    align-items: start;
+    flex-wrap: wrap;
+  }
+
+  .expires-label {
+    margin-left: 60px;
+  }
+}
