@@ -10,6 +10,8 @@ const __dirname = path.dirname(__filename)
 dotenv.config({ path: path.resolve(__dirname, '..', '..', '.env') })
 
 const { default: authRoutes } = await import('./routes/authRoutes.js')
+const { default: browserRoutes } = await import('./routes/browserRoutes.js')
+const { default: treasureRoutes } = await import('./routes/treasureRoutes.js')
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -29,6 +31,8 @@ app.get('/api/test', (req, res) => {
 })
 
 app.use('/api/auth', authRoutes)
+app.use('/api/browser', browserRoutes)
+app.use('/api/treasures', treasureRoutes)
 
 // Start server
 app.listen(PORT, () => {

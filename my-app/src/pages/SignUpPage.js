@@ -1,16 +1,17 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-export default function SignUpPage({ onStatus, onSession }) {
+export default function SignUpPage({ onSession }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
+    setError('');
 
     try {
       const response = await fetch('/api/auth/signup', {
@@ -28,14 +29,13 @@ export default function SignUpPage({ onStatus, onSession }) {
       }
 
       onSession(data.user || null);
-      onStatus(data.message || 'Account created successfully.');
       setEmail('');
       setPassword('');
+      navigate('/signup-successful');
     } catch (error) {
-      onStatus(error.message);
+      setError(error.message);
     } finally {
       setIsLoading(false);
-      navigate('/signup-successful'); // Navigate to the sign-up successful page after successful sign-up
     }
   };
 
@@ -75,7 +75,9 @@ export default function SignUpPage({ onStatus, onSession }) {
               {isLoading ? 'Please wait...' : 'Sign up'}
             </button>
 
-            <div>Already have an account? <Link to="/signin">Sign in</Link></div>
+            {error ? <p className="auth-feedback" role="alert">{error}</p> : null}
+
+            <p className="auth-switch">Already have an account? <Link to="/signin">Sign in</Link></p>
           </form>
         </section>
       </div>

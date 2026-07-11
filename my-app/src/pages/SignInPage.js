@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function SignInPage({ onStatus, onSession }) {
+export default function SignInPage({ onSession }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
+    setError('');
 
     try {
       const response = await fetch('/api/auth/signin', {
@@ -27,14 +29,13 @@ export default function SignInPage({ onStatus, onSession }) {
       }
 
       onSession(data.session || null);
-      onStatus(data.message || 'Signed in successfully.');
       setEmail('');
       setPassword('');
+      navigate('/home');
     } catch (error) {
-      onStatus(error.message);
+      setError(error.message);
     } finally {
       setIsLoading(false);
-      navigate('/home'); // Navigate to the home page after successful sign-in
     }
   };
 
@@ -43,8 +44,10 @@ export default function SignInPage({ onStatus, onSession }) {
       <div className="auth-card auth-layout">
         <section className="auth-page">
           <div className="auth-header">
-            <h2>Sign in</h2>
-            <p>Access your Treasure Tracker account.</p>
+            <span className="auth-emblem" aria-hidden="true">⚓</span>
+            <p className="auth-kicker">Treasure Tracker</p>
+            <h2>Welcome aboard</h2>
+            <p>Sign in to continue your next treasure hunt.</p>
           </div>
 
           <form className="auth-form" onSubmit={handleSubmit}>
@@ -71,10 +74,12 @@ export default function SignInPage({ onStatus, onSession }) {
             </label>
 
             <button type="submit" className="submit-button" disabled={isLoading}>
-              {isLoading ? 'Please wait...' : 'Sign in'}
+              {isLoading ? 'Opening the map...' : 'Set sail'}
             </button>
 
-            <div>Don't have an account? <Link to="/signup">Sign up</Link></div>
+            {error ? <p className="auth-feedback" role="alert">{error}</p> : null}
+
+            <p className="auth-switch">New to the crew? <Link to="/signup">Create an account</Link></p>
           </form>
         </section>
       </div>
